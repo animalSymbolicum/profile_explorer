@@ -5,7 +5,7 @@ date: 31st of July
 autosize: true
 
 
-```{r, include = FALSE, cache = TRUE}
+```{r setup, include = FALSE, cache = TRUE}
 library(magrittr)
 library(readxl)
 library(dplyr)
@@ -86,10 +86,6 @@ should be enriched with additional plots and data.
 
 This is the link to the app: <https://animalsymbolicum.shinyapps.io/shinyApp/> 
 
-and the github repository: 
-
-
-
-
+and the github repository: <https://github.com/animalSymbolicum/profile_explorer>
 
 

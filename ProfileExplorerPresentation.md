@@ -58,13 +58,19 @@ Development Plot
 ========================================================
 This is in example boxplot also used interectively used in the application. 
 It can be used to preview developement of an specific country for a specific indicator.
+![plot of chunk unnamed-chunk-2](ProfileExplorerPresentation-figure/unnamed-chunk-2-1.png)
+
+Summary
+========================================================
+
+The Application also includes a tabset to compare one specific country with other 
+countries by any of the indicators.
+
+The Purpose is to demonstrate the power of interactive data presentation which 
+should be enriched with additional plots and data. 
+
+This is the link to the app: <https://animalsymbolicum.shinyapps.io/shinyApp/> 
+
+and the github repository: <https://github.com/animalSymbolicum/profile_explorer>
 
 
-
-```
-processing file: ProfileExplorerPresentation.Rpres
-Quitting from lines 51-76 (ProfileExplorerPresentation.Rpres) 
-Fehler in eval(expr, envir, enclos) : konnte Funktion "%>%" nicht finden
-Ruft auf: knit ... handle -> withCallingHandlers -> withVisible -> eval -> eval
-Ausführung angehalten
-```
