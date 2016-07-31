@@ -1,0 +1,95 @@
+Aid-For-Trade Country Profile Explorer
+========================================================
+author: Majid 
+date: 31st of July
+autosize: true
+
+
+```{r, include = FALSE, cache = TRUE}
+library(magrittr)
+library(readxl)
+library(dplyr)
+library(reshape2)
+library(ggplot2)
+afgData <- read_excel("./shinyApp/www/afg_e.xls", sheet = "Data")
+```
+
+Purpose
+========================================================
+
+The Profile Explorer App is aimed as an example to present public data from the 
+World-Trade-Organisation (WTO) database.
+
+The WTO provides a bunch of datasets which can be found here: <http://stat.wto.org/Home/WSDBHome.aspx>.
+
+This App uses only the Aid-For-Trade Country Profiles which describes several 
+economic related indicators from 62 Countries.
+
+The purpose of the app is to draft a first glimbse of an data product that could 
+maybe include much more graphs and datasets from the WTO.
+
+The App can be found under the following link:
+<https://animalsymbolicum.shinyapps.io/shinyApp/>
+
+
+Example Data
+========================================================
+
+This is an example from the first 10 rows of the afghanistan profile data.
+The data was cleaned and includes 80 variables in a timespan from 2005-2014.
+
+```{r, cache = TRUE , message = FALSE, warning=FALSE}
+afgData[1:10, 1:3] %>% 
+  set_names(c("Afghanistan", "2005", "2006"))
+```
+
+Development Plot
+========================================================
+This is in example boxplot also used interectively used in the application. 
+It can be used to preview developement of an specific country for a specific indicator.
+```{r, echo=FALSE, include= TRUE}
+afgData %>% 
+  set_names(c("Variable", 2005:2014)) ->
+  temp
+
+    temp %>% 
+      select(-Variable) %>% 
+      sapply(as.numeric) %>% 
+      as.data.frame() %>%  
+      mutate(Variable = temp$Variable) %>% 
+        extract(c("Variable", as.character(2005:2014))) %>% 
+        filter(
+          !(is.na(Variable) |
+            Variable %in% c(
+              "A. Development Finance",
+              "B. Trade Cost",
+              "C. Trade Performance",
+              "D. Development Indicators"
+            ))
+        ) %>% 
+      extract(1, -1) %>% 
+       melt() %>%  
+              set_names(c("unit", "year")) %>% 
+              ggplot(data = ., aes(x = year, y = unit)) + 
+              geom_bar(stat = "identity", fill = "lightblue") +
+              labs(title = temp$Variable[1]) 
+```
+
+Summary
+========================================================
+
+The Application also includes a tabset to compare one specific country with other 
+countries by any of the indicators.
+
+The Purpose is to demonstrate the power of interactive data presentation which 
+should be enriched with additional plots and data. 
+
+This is the link to the app: <https://animalsymbolicum.shinyapps.io/shinyApp/> 
+
+and the github repository: 
+
+
+
+
+
+
